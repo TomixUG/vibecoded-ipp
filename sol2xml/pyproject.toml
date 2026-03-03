@@ -1,0 +1,9 @@
+[project]
+name = "sol2xml"
+version = "0.1.0"
+requires-python = ">=3.13,<3.14"
+
+dependencies = [
+    "lark==1.2.2",
+    "lxml~=5.3.2",
+]
