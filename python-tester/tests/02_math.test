@@ -1,0 +1,16 @@
+*** Math operations
++++ math
+!C! 0
+!I! 0
+>>> 2
+
+class Main : Object {
+run [ | 
+  x := 10 plus: 5.
+  _ := (x asString) print.
+  _ := '\n' print.
+  y := x divBy: 3.
+  _ := (y asString) print.
+  _ := '\n' print.
+]
+}

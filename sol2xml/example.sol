@@ -1,31 +1,27 @@
 class Main : Object {
-  run  "<- definice metody - bezparametrický selektor run"
-    [ | 
-      "zaslání zprávy 'compute:and:and:' sobě samému - selektor se dvěma arg."
-      x := self compute: 3 and: 2 and: 5. 
-      "zaslání zprávy 'plusOne:' sobě samému - selektor s jedním arg.
-       Argumentem je výsledek po zaslání zprávy 'vysl' objektu self."
-      x := self plusOne: (self vysl).
-      "zaslání zprávy 'asString' objektu x - bezparam. selektor"
-      y := x asString.
-      _ := y print.
-    ]
+  run  [ | 
+     stringIWannaPrint := 'this is the string i wanna print\n'.
 
-  plusOne: "<- definice metody - selektor s jedním parametrem"
-    [ :x | r := x plus: 1. ]
+     foo := Foo new.                 "nova instance tridy Foo, foo"
+     b := foo myPrint: stringIWannaPrint.
 
-  compute:and:and:  "<- definice metody - selektor se třemi parametry"
-    [ :x :y :z | 
-      "zaslání zpr. 'plus:' objektu x - selektor s jedním argumentem"
-      a := x plus: y.
-      "zaslání zpr. 'vysl:' sobě samému - nastaví instanční atribut 'vysl'"
-      _ := self vysl: a.
-      "zpráva 'vysl' se zašle sobě, výsledkem je ref. na objekt vysl;
-       tomuto objektu se pak zašle zpráva 'greaterThan:' s arg. 0."
-      _ := ((self vysl) greaterThan: 0)
-         "výsledkem je objekt typu True nebo False, kterému se zašle zpráva
-          'ifTrue:ifFalse:', argumenty jsou bezparametrické bloky"
-         ifTrue:  [|u := self vysl: 1.]
-         ifFalse: [|]. 
+     bar := Bar new.
+     c := bar myPrint: 'bar string\n'.
+     d := bar quack.
+
     ]
+}
+
+class Foo : Object {
+
+ "method, which prints myStr"
+ myPrint: [ :myStr |
+    a := myStr print.
+  ] 
+}
+
+class Bar : Foo {
+ quack [ |
+  _ := 'quack!' print.
+ ] 
 }

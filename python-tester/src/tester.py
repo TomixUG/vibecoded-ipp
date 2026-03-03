@@ -198,10 +198,21 @@ def main() -> None:
         logging.root.setLevel(logging.INFO)
 
     # TODO: Your code for discovering and executing the test cases goes here.
+    from execution import main_execution
 
-    # Example of how to write the final report:
-    report = TestReport(discovered_test_cases=[], unexecuted={}, results={})
+    report = main_execution(args)
     write_result(report, args.output)
+
+    if report.results:
+        passed = 0
+        failed = 0
+        for cat_report in report.results.values():
+            for tr in cat_report.test_results.values():
+                if tr.result == "passed":
+                    passed += 1
+                else:
+                    failed += 1
+        print(f"\\nSummary: {passed} passed, {failed} failed.", file=sys.stderr)
 
 
 if __name__ == "__main__":

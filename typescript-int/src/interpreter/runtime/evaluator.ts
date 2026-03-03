@@ -34,9 +34,8 @@ export class Evaluator {
         return globalCtx.createInteger(val);
       }
       case "String": {
-        const val = literal.value;
-        // The AST should have XML entities resolved, but escape sequences like \n might be mapped to &#10; already.
-        // Let's assume standard strings.
+        let val = literal.value;
+        val = val.replace(/\\n/g, "\n").replace(/\\'/g, "'").replace(/\\\\/g, "\\");
         return globalCtx.createString(val);
       }
       case "True":

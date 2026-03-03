@@ -1,0 +1,12 @@
+*** Arity mismatch in method call
++++ error
+!C! 0
+!I! 51
+>>> 1
+
+class Main : Object {
+run [ | 
+  _ := self doSomething: 1 and: 2.
+]
+doSomething: [ :x | _ := x print. ]
+}
